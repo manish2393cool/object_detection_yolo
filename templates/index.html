@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<script src="{{ url_for('static', filename='upload.js') }}"></script>
+
+<script>
+  function results(){
+
+  }
+</script>
+
+<style>
+img {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 200px;
+}
+</style>
+
+</head>
+
+<body>
+ <div class="login">
+	<h1>Object Detection WebApp</h1>
+    <!-- Main Input For Receiving Query to our ML -->
+    <!-- <form action="{{ url_for('get_image_out')}}" method="post">
+      <input type="file" name="file" />
+      <button type="submit" class="btn btn-primary btn-block btn-large">Upload and Predict</button>
+    </form> -->
+
+    <form onsubmit="return results();" action = "/image_output" method = "POST" enctype = "multipart/form-data">
+      <input type = "file" name = "images" />
+      <input type = "submit"/>
+    </form>
+
+   <br>
+   <br>
+
+  <a action="/result"><button class='btn btn-default'>Show Output!</button></a>
+
+ </div>
+
+
+</body>
+</html>
