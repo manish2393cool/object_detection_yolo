@@ -11,9 +11,10 @@ from yolov3_tf2.dataset import transform_images, load_tfrecord_dataset
 from yolov3_tf2.utils import draw_outputs
 
 flags.DEFINE_string('classes', './data/labels/coco.names', 'path to classes file')
-flags.DEFINE_string('weights', './weights/yolov3.tf',
+flags.DEFINE_string('weights', './weights/yolov3-tiny.tf',
                     'path to weights file')
-flags.DEFINE_boolean('tiny', False, 'yolov3 or yolov3-tiny')
+# flags.DEFINE_boolean('tiny', False, 'yolov3 or yolov3-tiny')
+flags.DEFINE_boolean('tiny', True, 'yolov3 or yolov3-tiny')
 flags.DEFINE_integer('size', 416, 'resize images to')
 flags.DEFINE_list('images', '/data/images/dog.jpg', 'list with paths to input images')
 flags.DEFINE_string('tfrecord', None, 'tfrecord instead of image')
@@ -26,8 +27,10 @@ def main(_argv):
         tf.config.experimental.set_memory_growth(physical_devices[0], True)
 
     if FLAGS.tiny:
+        print("yolo used is tiny model")
         yolo = YoloV3Tiny(classes=FLAGS.num_classes)
     else:
+        print("yolo used is full model")
         yolo = YoloV3(classes=FLAGS.num_classes)
 
     yolo.load_weights(FLAGS.weights).expect_partial()

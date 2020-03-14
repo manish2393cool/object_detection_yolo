@@ -15,8 +15,9 @@ import io
 
 # customize your API through the following parameters
 classes_path = './data/labels/coco.names'
-weights_path = './weights/yolov3.tf'
-tiny = False                    # set to True if using a Yolov3 Tiny model
+weights_path = './weights/yolov3-tiny.tf'
+tiny = True
+# tiny = False                    # set to True if using a Yolov3 Tiny model
 size = 416                      # size images are resized to for model
 output_path = './detections/'
 static_path = './static/'  # path to output folder where images with detections are saved
@@ -32,7 +33,8 @@ if tiny:
 else:
     yolo = YoloV3(classes=num_classes)
 
-yolo.load_weights(weights_path).expect_partial()
+# yolo.load_weights(weights_path).expect_partial()
+yolo.load_weights(weights_path)
 print('weights loaded')
 
 class_names = [c.strip() for c in open(classes_path).readlines()]
